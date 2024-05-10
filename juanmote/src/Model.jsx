@@ -9,17 +9,8 @@ export function Model(props) {
   const groupRef = useRef();
   const { nodes, materials } = useGLTF('/denadamakina.glb')
   const [active, setActive] = useState(false)
-  const [positions, setPositions] = useState(Array(nodes.SwitchKeycap_v6.length).fill([0, 0, 0]));
-  const springs = positions.map((position, index) => useSpring({
-    to: { position: active[index] ? [0, 0, -0.1] : [0, 0, 0] }
-  }));
-  const handleSwitchKeycapClick = (index) => {
-    setActive(prevActive => {
-      const newActive = [...prevActive];
-      newActive[index] = !newActive[index];
-      return newActive;
-    });
-  };
+  const { position } = useSpring({ to: { position: active ? [0,0,-0.1] : [0,0,0] } })
+  
   useFrame(({ clock }) => {
     groupRef.current.rotation.y = 0.5*Math.sin(0.1*clock.getElapsedTime())
   })
@@ -124,8 +115,6 @@ export function Model(props) {
           material={materials['Aluminio_-_Anodizado_brillante_(gris).002']}
         />
       </group>
-      <group  >
-      {nodes.SwitchKeycap_v6.map((node, index) => (
       <animated.mesh
         castShadow
         receiveShadow
@@ -133,9 +122,9 @@ export function Model(props) {
         material={materials['Acero_-_Satinado.002']}
         rotation={[Math.PI / 2, 0, 0]}
         position={position} 
-        onPointerDown={() => handleSwitchKeycapClick(index)}
-        onPointerUp={() => handleSwitchKeycapClick(index)}
-      /> ))}
+        onPointerDown={() => setActive(true)}
+        onPointerUp={() => setActive(false)}
+      />
       <animated.mesh
         castShadow
         receiveShadow
@@ -188,9 +177,8 @@ export function Model(props) {
         position={position} 
         onPointerDown={() => setActive(true)}
         onPointerUp={() => setActive(false)}
-      
+        
       />
-      </group>
       <mesh
         castShadow
         receiveShadow
