@@ -5,7 +5,36 @@ import {
          shaderMaterial } from '@react-three/drei';
 import glsl from "babel-plugin-glsl/macro";
 
-const WaveShaderMaterial = shaderMaterial(
+export const SimpleShaderMaterial = shaderMaterial(
+    { uColor: new THREE.Color(0.2, 0.0, 0.5) , iResolution: new THREE.Vector2(1.0, 1.0)}, // Uniforms
+    // Vertex shader
+    glsl`
+    
+      varying vec2 vUv;
+      void main() {
+        
+        vUv = uv;
+        gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+      }
+    `,
+    // Fragment shader
+    glsl`
+      uniform vec2 iResolution;
+      uniform vec3 uColor;
+      varying vec2 vUv;
+
+      void main() {
+        vec2 uv = vUv;
+        uv = iResolution.xy;
+        gl_FragColor = vec4( vUv, 1.0, 1.0);
+      }
+    `
+  );
+  
+  // Registrar el material en Three.js
+extend({ SimpleShaderMaterial });
+
+export const WaveShaderMaterial = shaderMaterial(
     /*glsl*/
     // Uniform
     { uTime:0, uColor: new THREE.Color(1.0,0.0,0.0), iResolution: new THREE.Vector2(1.0, 1.0)},

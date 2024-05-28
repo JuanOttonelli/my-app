@@ -1,9 +1,8 @@
 
 import React, { useRef, useState } from 'react'
 import { useGLTF } from '@react-three/drei'
-import { useFrame } from '@react-three/fiber';
 import { useSpring, animated } from '@react-spring/three'
-
+import { SimpleShaderMaterial} from './BgShader';
 
 export function Model(props) {
   const groupRef = useRef();
@@ -21,7 +20,8 @@ export function Model(props) {
   const spring4 = useSpring({ to: { z: active4 ? -0.1 : 0 } });
   const spring5 = useSpring({ to: { z: active5 ? -0.1 : 0 } });
   const spring6 = useSpring({ to: { z: active6 ? -0.1 : 0 } });
-
+  
+  
   /*
   useFrame(({ clock }) => {
     groupRef.current.rotation.y = 0.5*Math.sin(0.1*clock.getElapsedTime())
@@ -118,8 +118,9 @@ export function Model(props) {
           castShadow
           receiveShadow
           geometry={nodes.LCD_ASM_1.geometry}
-          material={materials['Pantalla_-_4x20_-_LCD_(blanco_sobre_azul).002']}
-        />
+          
+        ><simpleShaderMaterial  /> </mesh>
+        
         <mesh
           castShadow
           receiveShadow
