@@ -118,8 +118,8 @@ export function Model(props) {
           castShadow
           receiveShadow
           geometry={nodes.LCD_ASM_1.geometry}
-          
-        ><simpleShaderMaterial  /> </mesh>
+          scale={1}
+        ><simpleShaderMaterial /> </mesh>
         
         <mesh
           castShadow
