@@ -3,37 +3,54 @@ import React, { useRef, useState } from 'react'
 import { useGLTF } from '@react-three/drei'
 import { useSpring, animated } from '@react-spring/three'
 import { SimpleShaderMaterial} from './BgShader';
+import { MeshStandardMaterial } from 'three';
+import { vec3 } from 'three/examples/jsm/nodes/Nodes.js';
+import * as THREE from "three";
 
 export function Model(props) {
   const groupRef = useRef();
   const { nodes, materials } = useGLTF('/denadamakina.glb')
-  const [active1, setActive1] = useState(false);
-  const [active2, setActive2] = useState(false);
-  const [active3, setActive3] = useState(false);
-  const [active4, setActive4] = useState(false);
-  const [active5, setActive5] = useState(false);
-  const [active6, setActive6] = useState(false);
 
-  const spring1 = useSpring({ to: { z: active1 ? -0.1 : 0 } });
-  const spring2 = useSpring({ to: { z: active2 ? -0.1 : 0 } });
-  const spring3 = useSpring({ to: { z: active3 ? -0.1 : 0 } });
-  const spring4 = useSpring({ to: { z: active4 ? -0.1 : 0 } });
-  const spring5 = useSpring({ to: { z: active5 ? -0.1 : 0 } });
-  const spring6 = useSpring({ to: { z: active6 ? -0.1 : 0 } });
+  const [switchesArray, setSwitchesArray] = useState({
+    1: false,
+    2: false,
+    3: false,
+    4: false,
+    5: false,
+  });
+   
+
+  const springProps = {
+    1: useSpring({ springs: switchesArray[1] ? -0.1 : 0.0, config: { tension: 170, friction: 26 } }),
+    2: useSpring({ springs: switchesArray[2] ? -0.1 : 0.0, config: { tension: 170, friction: 26 } }),
+    3: useSpring({ springs: switchesArray[3] ? -0.1 : 0.0, config: { tension: 170, friction: 26 } }),
+    4: useSpring({ springs: switchesArray[4] ? -0.1 : 0.0, config: { tension: 170, friction: 26 } }),
+    5: useSpring({ springs: switchesArray[5] ? -0.1 : 0.0, config: { tension: 170, friction: 26 } }),
+    6: useSpring({ springs: switchesArray[6] ? -0.1 : 0.0, config: { tension: 170, friction: 26 } }),
   
-  
+  };
+
+  const handyHandle = (state, ido) => {
+    setSwitchesArray(prevState => ({
+      ...prevState,
+      [ido]: state,
+    }));
+  };
+
+  const material = new MeshStandardMaterial({ color: "Indigo" });
+  const materialLCD = new MeshStandardMaterial({ color: new THREE.Color("rgb(100, 100, 100)") });
   /*
   useFrame(({ clock }) => {
     groupRef.current.rotation.y = 0.5*Math.sin(0.1*clock.getElapsedTime())
   })*/
 
   return (
-    <group {...props} dispose={null} ref={groupRef}>
+    <group {...props} dispose={null} ref={groupRef} >
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.base.geometry}
-        material={materials['HP_3D_HR_CB_PA_12_(con_impresora_3D_en_color_HP_Jet_Fusion_.001']}
+        material={material}
         rotation={[Math.PI / 2, 0, 0]}
       />
       <mesh
@@ -82,35 +99,35 @@ export function Model(props) {
         castShadow
         receiveShadow
         geometry={nodes.Knob_2.geometry}
-        material={materials['Acero_-_Satinado.002']}
+        material={materialLCD}
         rotation={[Math.PI / 2, 0, 0]}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes['Knob_2_(1)'].geometry}
-        material={materials['Acero_-_Satinado.002']}
+        material={materialLCD}
         rotation={[Math.PI / 2, 0, 0]}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes['Knob_2_(1)_(1)'].geometry}
-        material={materials['Acero_-_Satinado.002']}
+        material={materialLCD}
         rotation={[Math.PI / 2, 0, 0]}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes['Knob_2_(2)'].geometry}
-        material={materials['Acero_-_Satinado.002']}
+        material={materialLCD}
         rotation={[Math.PI / 2, 0, 0]}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes['Knob_2_(2)_(1)'].geometry}
-        material={materials['Acero_-_Satinado.002']}
+        material={materialLCD}
         rotation={[Math.PI / 2, 0, 0]}
       />
       <group rotation={[Math.PI / 2, 0, 0]}>
@@ -125,75 +142,77 @@ export function Model(props) {
           castShadow
           receiveShadow
           geometry={nodes.LCD_ASM_2.geometry}
-          material={materials['Aluminio_-_Anodizado_brillante_(gris).002']}
+          material={materialLCD}
         />
       </group>
-      <animated.mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.SwitchKeycap_v6.geometry}
-        material={materials['HP_3D_HR_CB_PA_12_(con_impresora_3D_en_color_HP_Jet_Fusion_.001']}
-        rotation={[Math.PI / 2, 0, 0]}
-        position-z={spring1.z} 
-        onPointerDown={() => setActive1(true)}
-        onPointerUp={() => setActive1(false)}
-      />
-      <animated.mesh
-        castShadow
-        receiveShadow
-        geometry={nodes['SwitchKeycap_v6_(1)'].geometry}
-        material={materials['HP_3D_HR_CB_PA_12_(con_impresora_3D_en_color_HP_Jet_Fusion_.001']}
-        rotation={[Math.PI / 2, 0, 0]}
-        position-z={spring2.z}  
-        onPointerDown={() => setActive2(true)}
-        onPointerUp={() => setActive2(false)}
-      />
-      <animated.mesh
-        castShadow
-        receiveShadow
-        geometry={nodes['SwitchKeycap_v6_(1)_(1)'].geometry}
-        material={materials['HP_3D_HR_CB_PA_12_(con_impresora_3D_en_color_HP_Jet_Fusion_.001']}
-        rotation={[Math.PI / 2, 0, 0]}
-        position-z={spring3.z}  
-        onPointerDown={() => setActive3(true)}
-        onPointerUp={() => setActive3(false)}
-      />
-      <animated.mesh
-        castShadow
-        receiveShadow
-        geometry={nodes['SwitchKeycap_v6_(1)_(1)_(1)'].geometry}
-        material={materials['HP_3D_HR_CB_PA_12_(con_impresora_3D_en_color_HP_Jet_Fusion_.001']}
-        rotation={[Math.PI / 2, 0, 0]}
-        position-z={spring4.z}  
-        onPointerDown={() => setActive4(true)}
-        onPointerUp={() => setActive4(false)}
-      />
-      <animated.mesh
-        castShadow
-        receiveShadow
-        geometry={nodes['SwitchKeycap_v6_(1)_(2)'].geometry}
-        material={materials['HP_3D_HR_CB_PA_12_(con_impresora_3D_en_color_HP_Jet_Fusion_.001']}
-        rotation={[Math.PI / 2, 0, 0]}
-        position-z={spring5.z}  
-        onPointerDown={() => setActive5(true)}
-        onPointerUp={() => setActive5(false)}
-      />
-      <animated.mesh
-        castShadow
-        receiveShadow
-        geometry={nodes['SwitchKeycap_v6_(2)'].geometry}
-        material={materials['HP_3D_HR_CB_PA_12_(con_impresora_3D_en_color_HP_Jet_Fusion_.001']}
-        rotation={[Math.PI / 2, 0, 0]}
-        position-z={spring6.z}  
-        onPointerDown={() => setActive6(true)}
-        onPointerUp={() => setActive6(false)}
-        
-      />
+      <group>
+          <animated.mesh
+            castShadow
+            geometry={nodes.SwitchKeycap_v6.geometry}
+            material={material}
+            rotation={[Math.PI / 2, 0, 0]}
+            
+            position-z={springProps[1].springs}
+            onPointerDown={() => handyHandle(true, 1)}
+            onPointerUp={() => handyHandle(false, 1)}
+          />
+          <animated.mesh
+            castShadow
+            geometry={nodes['SwitchKeycap_v6_(1)'].geometry}
+            material={material}
+            rotation={[Math.PI / 2, 0, 0]}
+            
+            position-z={springProps[2].springs}
+            onPointerDown={() => handyHandle(true, 2)}
+            onPointerUp={() => handyHandle(false, 2)}
+          />
+          <animated.mesh
+            castShadow
+            receiveShadow
+            geometry={nodes['SwitchKeycap_v6_(1)_(1)'].geometry}
+            material={material}            
+            rotation={[Math.PI / 2, 0, 0]}
+            position-z={springProps[3].springs}
+            onPointerDown={() => handyHandle(true, 3)}
+            onPointerUp={() => handyHandle(false, 3)}
+          />
+          <animated.mesh
+            castShadow
+            receiveShadow
+            geometry={nodes['SwitchKeycap_v6_(1)_(1)_(1)'].geometry}
+            material={material}
+            rotation={[Math.PI / 2, 0, 0]}
+            position-z={springProps[4].springs}
+            onPointerDown={() => handyHandle(true, 4)}
+            onPointerUp={() => handyHandle(false, 4)}
+          />
+          <animated.mesh
+            castShadow
+            receiveShadow
+            geometry={nodes['SwitchKeycap_v6_(1)_(2)'].geometry}
+            material={material}
+            rotation={[Math.PI / 2, 0, 0]}
+            position-z={springProps[5].springs}
+            onPointerDown={() => handyHandle(true, 5)}
+            onPointerUp={() => handyHandle(false, 5)}
+          />
+          <animated.mesh
+            castShadow
+            receiveShadow
+            geometry={nodes['SwitchKeycap_v6_(2)'].geometry}
+            material={material}
+            rotation={[Math.PI / 2, 0, 0]}
+            position-z={springProps[6].springs}
+            onPointerDown={() => handyHandle(true, 6)}
+            onPointerUp={() => handyHandle(false, 6)}
+          />
+      </group>
+      
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.Tapa.geometry}
-        material={materials['HP_3D_HR_CB_PA_12_(con_impresora_3D_en_color_HP_Jet_Fusion_.001']}
+        material={material}
         rotation={[Math.PI / 2, 0, 0]}
       />
       

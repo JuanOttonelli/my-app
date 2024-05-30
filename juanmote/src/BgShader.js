@@ -1,8 +1,9 @@
 import * as THREE from "three";
-import React, { useRef } from 'react'
-import {  extend, useFrame} from '@react-three/fiber';
+import React, { useRef, useEffect } from 'react';
+import { extend, useFrame, useThree } from '@react-three/fiber';
 import { 
          shaderMaterial } from '@react-three/drei';
+
 import glsl from "babel-plugin-glsl/macro";
 
 export const SimpleShaderMaterial = shaderMaterial(
@@ -37,7 +38,7 @@ export const SimpleShaderMaterial = shaderMaterial(
     vec3 bgColor = vec3(0.0, 0.2, 0.8);
     // Color de fondo base (negro)
     vec3 baseColor = mix(bgColor, vec3(1.0), grid); // Interpolate between black and uColor based on v
-  
+    
 
     gl_FragColor = vec4(baseColor, 1.0);
   }
@@ -129,17 +130,19 @@ export const WaveShaderMaterial = shaderMaterial(
         
         v = smoothstep(1.0, 0.0, 0.5 * abs(v) / fwidth(v));
         
-        vec3 color = vec3(0.0, 0.8, 0.0);
+        vec3 color = vec3(0.9, 0.3, 0.0);
         vec3 colorete = mix(vec3(0.0), color, v); // Interpolate between black and uColor based on v
   
         
   
-        gl_FragColor = vec4(vec3(sin(colorete)), 1.0);
+        gl_FragColor +=  vec4(vec3(sin(colorete  )) , 1.0);
       }`
   );
   
+
   extend({WaveShaderMaterial});
   
+
   function WaveMesh() {
     const materialRef = useRef();
     
@@ -153,7 +156,7 @@ export const WaveShaderMaterial = shaderMaterial(
       <mesh>
         <sphereGeometry attach="geometry"  args={[30, 100, 100, 1.5, Math.PI * 2]} />
         
-        <waveShaderMaterial ref={materialRef} side={THREE.BackSide} />
+        <waveShaderMaterial ref={materialRef} side={THREE.BackSide} emissiveIntensity={1}  />
       </mesh>
     );
   }
