@@ -45,7 +45,7 @@ export function Model(props) {
   })*/
 
   return (
-    <group {...props} dispose={null} ref={groupRef} >
+    <group {...props}  ref={groupRef} >
       <mesh
         castShadow
         receiveShadow
