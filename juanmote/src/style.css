@@ -3,8 +3,8 @@ body {
     background: rgb(0, 0, 0);
 }
 .myCanvas {
-  
-  height: clamp(300px, 100vh, 1080px);
+  width: '100vw';
+  height: clamp(300px, 100vh, 100vh);
 }
 .canvas-container {
     width: 100vw;
