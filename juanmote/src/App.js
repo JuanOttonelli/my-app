@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react'
+import React, { useRef, useState, useEffect, Fragment } from 'react'
 import './style.css';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { Model } from './Model.jsx';
@@ -13,6 +13,7 @@ import { Container, Row, Col, Card }
   from 'react-bootstrap';
 import { Resizable } from 'react-resizable';
 import { MathUtils } from 'three';
+
 
 function lerp(from, to, speed) {
   const r = (1 - speed) * from + speed * to
@@ -94,8 +95,12 @@ function MovingLights() {
   );
 }
 
+const clamp = (val, min, max) => Math.min(Math.max(val, min), max)
 
-
+const cliqui = (aspect) => {
+  alert(aspect);
+  
+}
 
 function App() {
   const canvasRef = useRef();
@@ -107,23 +112,23 @@ function App() {
     const width = window.innerWidth;
     const height = window.innerHeight;
 
-    const value = 35 * (1 / (width/800 ))
-    
-    
-    
+    const value = clamp(35 * (1 / (width / 550)), 23, 60)
+
+
+
     return value;
   };
 
   useEffect(() => {
     // Calcular el aspecto inicial al cargar la página
     const initialAspect = calculateAspect();
-    
+
     setAspect(initialAspect);
 
     const handleResize = () => {
       // Calcular el aspecto al redimensionar la ventana
       const newAspect = calculateAspect();
-      
+
       setAspect(newAspect);
     };
 
@@ -134,24 +139,29 @@ function App() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
   return (
-
+    <Fragment>
+    <div className='myCanvas' >
     <Canvas
-      className='canvasRef'
-      shadows
-      dpr={[1, 1.5]}
-      style={{ width: '100vw', height: '100vh' }}
-      camera={{ position: [0, 0, 35], fov: 50, near: 1 }}
-    >
-      <PerspectiveCamera makeDefault={true} position={[0,0,aspect]} fov={50}/>
-      <OrbitControls />
-      <MovingLights />
-      <ambientLight intensity={0.35} />
-      <WaveMesh />
+        
+        shadows
+        dpr={[1, 1.5]}
+        style={{ width: '100vw' }}
+        camera={{ position: [0, 0, 35], fov: 50, near: 1 }}
+      >
+        <PerspectiveCamera makeDefault={true} position={[0, 0, aspect]} fov={50} />
+        <OrbitControls />
+        <MovingLights />
+        <ambientLight intensity={0.35} />
+        <WaveMesh />
 
-      <Model position={[0, 0, 0]} />
+        <Model position={[0, 0, 0]} />
 
 
-    </Canvas>
+      </Canvas>
+    </div>   
+    
+      
+    </Fragment>
 
   );
 

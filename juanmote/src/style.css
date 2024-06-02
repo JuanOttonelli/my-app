@@ -2,7 +2,10 @@ body {
     
     background: rgb(0, 0, 0);
 }
-
+.myCanvas {
+  
+  height: clamp(300px, 100vh, 1080px);
+}
 .canvas-container {
     width: 100vw;
     height: 600px;
