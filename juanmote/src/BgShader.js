@@ -1,16 +1,17 @@
 import * as THREE from "three";
 import React, { useRef, useEffect } from 'react';
 import { extend, useFrame, useThree } from '@react-three/fiber';
-import { 
-         shaderMaterial } from '@react-three/drei';
+import {
+  shaderMaterial
+} from '@react-three/drei';
 
 import glsl from "babel-plugin-glsl/macro";
 
 export const SimpleShaderMaterial = shaderMaterial(
-  { 
+  {
     uColor: new THREE.Color(0.2, 1.0, 0.5),
     iTime: 0.0,
-    
+
   }, // Uniforms
   // Vertex shader
   glsl`
@@ -43,18 +44,18 @@ export const SimpleShaderMaterial = shaderMaterial(
     gl_FragColor = vec4(baseColor, 1.0);
   }
   `
-  );
+);
 
-  
-  // Registrar el material en Three.js
+
+// Registrar el material en Three.js
 extend({ SimpleShaderMaterial });
 
 export const WaveShaderMaterial = shaderMaterial(
-    /*glsl*/
-    // Uniform
-    { uTime:0, uColor: new THREE.Color(1.0,0.0,0.0), iResolution: new THREE.Vector2(1.0, 1.0)},
-    // Vertex Shader
-    glsl`
+  /*glsl*/
+  // Uniform
+  { uTime: 0, uColor: new THREE.Color(1.0, 0.0, 0.0), iResolution: new THREE.Vector2(1.0, 1.0) },
+  // Vertex Shader
+  glsl`
     uniform float uTime;
     uniform vec2 iResolution;
     varying vec2 vUv;
@@ -95,8 +96,8 @@ export const WaveShaderMaterial = shaderMaterial(
   
         gl_Position = projectionMatrix * modelViewMatrix * vec4(displacedPosition, 1.0);
       }` ,
-    // Fragment Shader
-    glsl`
+  // Fragment Shader
+  glsl`
       uniform float uTime;
       uniform vec2 iResolution;
       varying vec2 vUv;
@@ -137,28 +138,28 @@ export const WaveShaderMaterial = shaderMaterial(
   
         gl_FragColor +=  vec4(vec3(sin(colorete  )) , 1.0);
       }`
-  );
-  
+);
 
-  extend({WaveShaderMaterial});
-  
 
-  function WaveMesh() {
-    const materialRef = useRef();
-    
-    // Actualiza el tiempo uniformemente en cada frame
-    useFrame((state, delta) => {
-      materialRef.current.uTime += delta;
-      materialRef.current.iResolution.set(window.innerWidth, window.innerHeight);
-    });
-  
-    return (
-      <mesh>
-        <sphereGeometry attach="geometry"  args={[30, 100, 100, 1.5, Math.PI * 2]} />
-        
-        <waveShaderMaterial ref={materialRef} side={THREE.BackSide} emissiveIntensity={1}  />
+extend({ WaveShaderMaterial });
+
+function WaveMesh() {
+  const materialRef = useRef();
+
+  // Actualiza el tiempo uniformemente en cada frame
+  useFrame((state, delta) => {
+    materialRef.current.uTime += delta;
+    materialRef.current.iResolution.set(window.innerWidth, window.innerHeight);
+  });
+
+  return (
+      <mesh >
+        <sphereGeometry attach="geometry" args={[30, 100, 100, 1.5, Math.PI * 2]} />
+
+        <waveShaderMaterial ref={materialRef} side={THREE.BackSide} emissiveIntensity={1} />
       </mesh>
-    );
-  }
 
-  export default WaveMesh;
+  );
+}
+
+export default WaveMesh;

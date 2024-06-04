@@ -38,7 +38,7 @@ export default function Intera() {
     }, []);
 
     return (
-        <div className='myCanvas' >
+        <div className='myCanvas ' >
             <Canvas
 
                 shadows
@@ -49,6 +49,7 @@ export default function Intera() {
                 <MovingLights />
                 <ambientLight intensity={0.35} />
                 <WaveMesh />
+                
                 <Model position={[0, 0, 0]} />
             </Canvas>
         </div>

@@ -18,19 +18,15 @@ function App() {
       <Intera></Intera>
       <Nav></Nav>
       <div className='myFakeCanvas'>
-        
+
       </div>
       <Desa ></Desa>
       <div className='myFakeCanvas'></div>
-        <Desa ></Desa>
+      <Desa ></Desa>
       <div className='myFakeCanvas'>
 
       </div>
       <Desa></Desa>
-
-
-
-
 
     </Fragment>
 

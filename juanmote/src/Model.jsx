@@ -1,6 +1,6 @@
 
 import React, { useRef, useState } from 'react'
-import { useGLTF } from '@react-three/drei'
+import { useGLTF, useScroll} from '@react-three/drei'
 import { useSpring, animated } from '@react-spring/three'
 import { SimpleShaderMaterial} from './BgShader';
 import { MeshStandardMaterial } from 'three';
@@ -9,6 +9,7 @@ import * as THREE from "three";
 
 export function Model(props) {
   const groupRef = useRef();
+  const scroll = useScroll();
   const { nodes, materials } = useGLTF('/denadamakina.glb')
 
   const [switchesArray, setSwitchesArray] = useState({

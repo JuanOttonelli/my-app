@@ -21,12 +21,12 @@ export default function MovingLights() {
   
     useFrame(({ clock }) => {
       const t = clock.getElapsedTime();
-      if (t > 2 && !hasExecutedI) {
+      if (t > 1 && !hasExecutedI) {
         setTargetIntensities({ light1I: 0, light2I: 0, light3I: 7000, light4I: 7000, light5I: 7000, light6I: 5000, light7I: 3000, light8I: 3000 });
         setHasExecutedI(true);
       }
       // Update light positions over time
-      if (t > 5 && !hasExecuted) {
+      if (t > 3 && !hasExecuted) {
         setTargetIntensities({ light1I: 1500, light2I: 1000, light3I: 7000, light4I: 7000, light5I: 7000, light6I: 5000, light7I: 3000, light8I: 3000 });
         setTargetPositions({ light1X: -7, light2X: 0 });
         setHasExecuted(true);
