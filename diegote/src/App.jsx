@@ -15,7 +15,7 @@ function App() {
       <spotLight color={0xffffff} position={[0,0,5]} angle={Math.PI / 2} penumbra={0.1} distance={20} castShadow/>
       <spotLight color={0xffffff} position={[0,0,0]} angle={Math.PI / 2} penumbra={0.1} distance={20} castShadow/>
       <OrbitControls ref={controlsRef} />
-      <Model position={[-10,0,0]} />
+      <Model position={[-10,-7,0]} />
     </Canvas>
   );
 }
