@@ -38,7 +38,7 @@ export function Model(props) {
   };
 
   const material = new MeshStandardMaterial({ color: "Indigo" });
-  const materialLCD = new MeshStandardMaterial({ color: new THREE.Color("rgb(100, 100, 100)") });
+  const materialLCD = new MeshStandardMaterial({ color: new THREE.Color("Black") });
   /*
   useFrame(({ clock }) => {
     groupRef.current.rotation.y = 0.5*Math.sin(0.1*clock.getElapsedTime())

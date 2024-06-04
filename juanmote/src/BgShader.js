@@ -130,7 +130,7 @@ export const WaveShaderMaterial = shaderMaterial(
         
         v = smoothstep(1.0, 0.0, 0.5 * abs(v) / fwidth(v));
         
-        vec3 color = vec3(0.9, 0.3, 0.0);
+        vec3 color = vec3(0.28, 0.16, 0.76);
         vec3 colorete = mix(vec3(0.0), color, v); // Interpolate between black and uColor based on v
   
         
