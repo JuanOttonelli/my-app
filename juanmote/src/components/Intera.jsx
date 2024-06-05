@@ -7,7 +7,6 @@ import { PerspectiveCamera } from '@react-three/drei'
 import MovingLights from '../lights.js';
 import gsap from 'gsap';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { scrollAnimation } from "./scroll-animation.js";
 import { a, useSpring } from '@react-spring/three';
 
 import { clamp } from '../functions.js';
