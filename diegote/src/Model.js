@@ -9,10 +9,13 @@ import { MeshStandardMaterial } from 'three';
 import { vec3 } from 'three/examples/jsm/nodes/Nodes.js';
 import * as THREE from "three";
 
-const materialLCD = new MeshStandardMaterial({ color: new THREE.Color("Black") });
 
 export function Model(props) {
+  const groupRef = useRef();
   const { nodes, materials } = useGLTF('/MIDI_blend.glb')
+
+  const [translucentMaterialOpacity, setTranslucentMaterialOpacity] = useState(0.5); // Define la opacidad deseada
+  
   return (
     <group {...props} dispose={null}>
       <group rotation={[Math.PI / 2, 0, 0]}>
@@ -86,7 +89,12 @@ export function Model(props) {
           castShadow
           receiveShadow
           geometry={nodes.MIDI_modelo_12.geometry}
-          material={materials['LED_(Green)']}
+          material={new MeshStandardMaterial({
+            color: 'green', // Color del material
+            transparent: true, // Hacer el material translúcido
+            opacity: translucentMaterialOpacity // Opacidad del material translúcido
+          })
+        }
         />
         <mesh
           castShadow
@@ -98,13 +106,24 @@ export function Model(props) {
           castShadow
           receiveShadow
           geometry={nodes.MIDI_modelo_14.geometry}
-          material={materials['Plastic_-_Translucent_Glossy_(Yellow)']}
+          material={
+            new MeshStandardMaterial({
+              color: 'yellow', // Color del material
+              transparent: true, // Hacer el material translúcido
+              opacity: translucentMaterialOpacity // Opacidad del material translúcido
+            })
+          }
         />
         <mesh
           castShadow
           receiveShadow
           geometry={nodes.MIDI_modelo_15.geometry}
-          material={materials[materialLCD]}
+          material={new MeshStandardMaterial({
+            color: 'blue', // Color del material
+            transparent: true, // Hacer el material translúcido
+            opacity: translucentMaterialOpacity // Opacidad del material translúcido
+          })
+        }
         />
         <mesh
           castShadow
@@ -116,13 +135,23 @@ export function Model(props) {
           castShadow
           receiveShadow
           geometry={nodes.MIDI_modelo_17.geometry}
-          material={materials['LED_(Red)']}
+          material={new MeshStandardMaterial({
+            color: 'red', // Color del material
+            transparent: true, // Hacer el material translúcido
+            opacity: translucentMaterialOpacity // Opacidad del material translúcido
+          })
+        }
         />
         <mesh
           castShadow
           receiveShadow
           geometry={nodes.MIDI_modelo_18.geometry}
-          material={materials['Glass_(Clear)']}
+          material={new MeshStandardMaterial({
+            color: 'clear', // Color del material
+            transparent: true, // Hacer el material translúcido
+            opacity: translucentMaterialOpacity // Opacidad del material translúcido
+          })
+        }
         />
         <mesh
           castShadow
@@ -131,6 +160,7 @@ export function Model(props) {
           material={materials['3D_Walnut_-_Stained_dark_semigloss']}
         />
       </group>
+      
     </group>
   )
 }
