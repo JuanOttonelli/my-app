@@ -69,12 +69,12 @@ export default function MovingLights() {
       <>
         <spotLight ref={light1Ref} color={0xFFFFFF} position={[20, 0, 15]} angle={Math.PI / 4} attenuation={1} anglePower={4} penumbra={1} distance={30} castShadow power={0} />
         <spotLight ref={light2Ref} color={0xFFFFFF} position={[-20, 0, 15]} angle={Math.PI / 4} attenuation={1} anglePower={4} penumbra={1} distance={20} castShadow power={0} />
-        <spotLight ref={light3Ref} color={0xFFFFFF} position={[0, 10, -7]} angle={Math.PI} attenuation={1} anglePower={4} penumbra={1} distance={20} castShadow power={0} />
-        <spotLight ref={light7Ref} color={0xFFFFFF} position={[-11, 10, -9]} angle={Math.PI} attenuation={1} anglePower={4} penumbra={1} distance={20} castShadow power={0} />
-        <spotLight ref={light8Ref} color={0xFFFFFF} position={[11, 10, -9]} angle={Math.PI} attenuation={1} anglePower={4} penumbra={1} distance={20} castShadow power={0} />
-        <spotLight ref={light4Ref} color={recorteColor} position={[0, -17, 6]} angle={Math.PI} attenuation={1} anglePower={20} penumbra={1} distance={20} castShadow power={0} />
-        <spotLight ref={light5Ref} color={recorteColor} position={[23, -9, 5]} angle={Math.PI / 4} attenuation={1} anglePower={20} penumbra={1} distance={20} castShadow power={0} />
-        <spotLight ref={light6Ref} color={recorteColor} position={[-23, -9, 5]} angle={Math.PI / 4} attenuation={1} anglePower={20} penumbra={1} distance={20} castShadow power={0} />
+        <SpotLight ref={light3Ref} color={0xFFFFFF} position={[0, 10, -7]} angle={Math.PI} attenuation={1} anglePower={4} penumbra={1} distance={20} castShadow power={0} />
+        <SpotLight ref={light7Ref} color={0xFFFFFF} position={[-11, 10, -9]} angle={Math.PI} attenuation={1} anglePower={4} penumbra={1} distance={20} castShadow power={0} />
+        <SpotLight ref={light8Ref} color={0xFFFFFF} position={[11, 10, -9]} angle={Math.PI} attenuation={1} anglePower={4} penumbra={1} distance={20} castShadow power={0} />
+        <SpotLight ref={light4Ref} color={recorteColor} position={[0, -17, 6]} angle={Math.PI} attenuation={1} anglePower={20} penumbra={1} distance={20} castShadow power={0} />
+        <SpotLight ref={light5Ref} color={recorteColor} position={[23, -9, 5]} angle={Math.PI / 4} attenuation={1} anglePower={20} penumbra={1} distance={20} castShadow power={0} />
+        <SpotLight ref={light6Ref} color={recorteColor} position={[-23, -9, 5]} angle={Math.PI / 4} attenuation={1} anglePower={20} penumbra={1} distance={20} castShadow power={0} />
       </>
     );
   }
