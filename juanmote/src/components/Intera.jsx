@@ -29,7 +29,7 @@ export default function Intera() {
     const calculateAspect = () => {
         const width = window.innerWidth;
         const height = window.innerHeight;
-        const value = clamp(35 * (height / width), 23, 50)
+        const value = clamp(35 * (height / width), 30, 50)
 
         return value;
     };
@@ -55,7 +55,7 @@ export default function Intera() {
             const newScrollY = window.scrollY;
             setScrollY(newScrollY);
             set({
-                position: [0 + newScrollY /30 , 0 + newScrollY /50, 50 - newScrollY /30 ]
+                position: [0 - newScrollY /30 , 0 + newScrollY /50, 50 - newScrollY /30 ]
             });
         };
 

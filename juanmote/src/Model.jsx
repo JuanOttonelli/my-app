@@ -18,12 +18,12 @@ export function Model(props) {
    
 
   const springProps = {
-    1: useSpring({ springs: switchesArray[1] ? -0.1 : 0.0, config: { tension: 170, friction: 26 } }),
-    2: useSpring({ springs: switchesArray[2] ? -0.1 : 0.0, config: { tension: 170, friction: 26 } }),
-    3: useSpring({ springs: switchesArray[3] ? -0.1 : 0.0, config: { tension: 170, friction: 26 } }),
-    4: useSpring({ springs: switchesArray[4] ? -0.1 : 0.0, config: { tension: 170, friction: 26 } }),
-    5: useSpring({ springs: switchesArray[5] ? -0.1 : 0.0, config: { tension: 170, friction: 26 } }),
-    6: useSpring({ springs: switchesArray[6] ? -0.1 : 0.0, config: { tension: 170, friction: 26 } }),
+    1: useSpring({ springs: switchesArray[1] ? -0.1 : 0.0, config: { tension: 370, friction: 26 } }),
+    2: useSpring({ springs: switchesArray[2] ? -0.1 : 0.0, config: { tension: 370, friction: 26 } }),
+    3: useSpring({ springs: switchesArray[3] ? -0.1 : 0.0, config: { tension: 370, friction: 26 } }),
+    4: useSpring({ springs: switchesArray[4] ? -0.1 : 0.0, config: { tension: 370, friction: 26 } }),
+    5: useSpring({ springs: switchesArray[5] ? -0.1 : 0.0, config: { tension: 370, friction: 26 } }),
+    6: useSpring({ springs: switchesArray[6] ? -0.1 : 0.0, config: { tension: 370, friction: 26 } }),
   
   };
 
@@ -31,6 +31,7 @@ export function Model(props) {
     setSwitchesArray(prevState => ({
       ...prevState,
       [ido]: state,
+      
     }));
   };
 

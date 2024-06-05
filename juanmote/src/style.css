@@ -198,7 +198,7 @@ nav.nav-wrapper {
   height: 48px;
   max-height: 44px;
   font-size: 17px;
-  background-color: #0000002f;
+  background-color: #00000000;
 }
 
 nav .nav-content {
@@ -373,14 +373,16 @@ nav .link-styled {
 .sound-section .content {
   max-width: 490px;
   width: 100%;
-  padding: 200px 0;
+  padding: 100px 000px;
   display: flex;
   align-items: center;
   flex-direction: column;
-  opacity: 0;
+  opacity: 1;
 }
 
 .sound-section .title {
+  
+  margin: 40px auto;
   color: #1d1d1f;
   font-size: 17px;
   font-weight: 400;

@@ -6,17 +6,53 @@ import Burger from '../assets/images/Burger.svg'
 import Play from '../assets/images/Play.svg'
 import Playy from '../assets/images/Playy.svg'
 import { lerp } from "../functions";
-
 export default function Nav() {
     const [opacity, setOpacity] = useState(1);
     const lastScrollY = useRef(0);
     const didScroll = useRef(false);
+    const isScrollingProgrammatically = useRef(false);
 
-    // Esta función se ejecuta cada vez que ocurre un evento de desplazamiento
-    const handleScroll = () => {
-        didScroll.current = true;
+    const handleBurger = () => {
+        setOpacity(1);
+        isScrollingProgrammatically.current = true;
+        const targetElement = document.querySelector("#sectionDesa");
+        if (targetElement) {
+            targetElement.scrollIntoView({ behavior: 'smooth' });
+        }
+        setTimeout(() => {
+            isScrollingProgrammatically.current = false;
+        }, 1000); // Ajusta el tiempo según la duración de la animación de desplazamiento
     };
 
+    const handleLogo = () => {
+        setOpacity(1);
+        isScrollingProgrammatically.current = true;
+        const targetElement = document.querySelector("#sectionTop");
+        if (targetElement) {
+            targetElement.scrollIntoView({ behavior: 'smooth' });
+        }
+        setTimeout(() => {
+            isScrollingProgrammatically.current = false;
+        }, 1000);
+    };
+
+    const handlePlay = () => {
+        setOpacity(1);
+        isScrollingProgrammatically.current = true;
+        const targetElement = document.querySelector("#sectionProc");
+        if (targetElement) {
+            targetElement.scrollIntoView({ behavior: 'smooth' });
+        }
+        setTimeout(() => {
+            isScrollingProgrammatically.current = false;
+        }, 1000);
+    };
+
+    const handleScroll = () => {
+        if (!isScrollingProgrammatically.current) {
+            didScroll.current = true;
+        }
+    };
     const scrolled = () => {
         const scrollTop = window.pageYOffset; // Cantidad de desplazamiento vertical en píxeles
         if (scrollTop < 0) {
@@ -51,22 +87,22 @@ export default function Nav() {
         };
     }, []);
     return (
-            <nav className='nav-wrapper' style={{ opacity: opacity }} >
-                <div className='nav-content'>
-                    <ul className='list-styled' >
-                        <li>
-                            <img src={Playy} alt='Play' />
-                        </li>
-                        <li>
-                            <img src={Logo} alt='Drama' />
-                        </li>
-                        <li>
-                            <img src={Burger}  alt='Contextual menu' />
-                        </li>
-                    </ul>
+        <nav className='nav-wrapper' style={{ opacity: opacity }} >
+            <div className='nav-content'>
+                <ul className='list-styled' >
+                    <li>
+                        <img onClick={handlePlay} style={{ cursor: 'pointer' }} src={Playy} alt='Play' />
+                    </li>
+                    <li>
+                        <img onClick={handleLogo} style={{ cursor: 'pointer' }} src={Logo} alt='Drama' />
+                    </li>
+                    <li >
+                        <img onClick={handleBurger} style={{ cursor: 'pointer' }} src={Burger} alt='Contextual menu' />
+                    </li>
+                </ul>
 
-                </div>
-            </nav>
+            </div>
+        </nav>
 
     )
 }
