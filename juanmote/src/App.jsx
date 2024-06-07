@@ -6,17 +6,13 @@ import Desa from './components/Desa.jsx';
 import WaveMesh from './BgShader.js';
 import { Canvas } from '@react-three/fiber';
 
-const cliqui = (aspect) => {
-  alert(aspect);
-}
+
 
 function App() {
-  const section2Ref = useRef(null);
-  
 
   return (
     <Fragment>
-      
+
       <div className='myFondo' >
         <Canvas>
 
@@ -26,26 +22,25 @@ function App() {
 
       <div className='myCanvas '  >
         <Canvas shadows
-                dpr={[1, 1.5]}
-                camera={{ position: [0, 0, 35], fov: 50, near: 1 }}>
-        <Intera></Intera>
+          dpr={[1, 1.5]}
+          camera={{ position: [0, 0, 35], fov: 50, near: 1 }}>
+          <Intera></Intera>
         </Canvas>
-        </div>
-      <Nav></Nav>
-      <div  className='myFakeCanvas'id="sectionTop">
+      </div>
 
-      </div>
+      <Nav></Nav>
+
+      <div className='myFakeCanvas' id="sectionTop"></div>
+    
       <div id="sectionDesa">
-      <Desa ></Desa>
+        <Desa ></Desa>
       </div>
-      
-      <div  className='myFakeCanvas'></div>
+
+      <div className='myFakeCanvas'></div>
       <div id="sectionProc">
       </div>
-      
 
     </Fragment>
-
   );
 }
 
